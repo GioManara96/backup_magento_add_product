@@ -5,7 +5,7 @@ require "vendor/autoload.php";
 use League\Csv\Reader;
 
 //load the CSV document from a file path
-$csv = Reader::createFromPath('./test.csv', 'r');
+$csv = Reader::createFromPath('./csv_files/forpen.csv', 'r');
 $csv->setHeaderOffset(0);
 $csv->setDelimiter(";");
 $header = $csv->getHeader(); //returns the CSV header record
@@ -31,7 +31,7 @@ for ($i = 0; $i < count($main_skus); $i++) {
             "sku" => $main_skus[$i],
             "linkType" => 'related',
             "linkedProductSku" => $related,
-            "linkedProductType" => "simple",
+            "linkedProductType" => "configurable",
             "position" => 0
         );
         array_push($postfields["items"], $postfield);
@@ -43,32 +43,34 @@ for ($i = 0; $i < count($main_skus); $i++) {
      * Per evitare chiamate inutili con array vuoti inserisco questo if.
      */
 
-    // $curl = curl_init();
+    $curl = curl_init();
 
-    // // file di testo da cui prendo il il bearer token
-    // $fileToken = fopen("token.txt", "r");
-    // $auth = fgets($fileToken);
+    // file di testo da cui prendo il il bearer token
+    $fileToken = fopen("token.txt", "r");
+    $auth = fgets($fileToken);
 
-    // curl_setopt_array($curl, array(
-    //     CURLOPT_URL => 'https://dominio.com/rest/V1/products/' . $main . '/links',
-    //     CURLOPT_RETURNTRANSFER => true,
-    //     CURLOPT_ENCODING => '',
-    //     CURLOPT_MAXREDIRS => 10,
-    //     CURLOPT_TIMEOUT => 0,
-    //     CURLOPT_FOLLOWLOCATION => true,
-    //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    //     CURLOPT_CUSTOMREQUEST => 'POST',
-    //     CURLOPT_POSTFIELDS => json_encode($postfields),
-    //     CURLOPT_HTTPHEADER => array(
-    //         $auth,
-    //         'Cookie: PHPSESSID=s88lk5blk224u8e6jlgjdpaedc'
-    //     ),
-    // ));
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://www.forpen.it/rest/V1/products/' . $main_skus[$i] . '/links',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode($postfields),
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            $auth,
+            'Cookie: PHPSESSID=s88lk5blk224u8e6jlgjdpaedc'
+        ),
+    ));
 
-    // $response = curl_exec($curl);
-
-    // curl_close($curl);
-    // fclose($fileToken);
-    echo "Ciclo $i\n" . json_encode($postfields, JSON_PRETTY_PRINT) . "\n";
+    $response = curl_exec($curl);
+    curl_close($curl);
+    fclose($fileToken);
+    // echo "Ciclo $i\n" . json_encode($postfields, JSON_PRETTY_PRINT) . "\n";
     $postfields = array("items" => array());
+
+    echo json_encode(json_decode($response), JSON_PRETTY_PRINT)."\n";
 }
