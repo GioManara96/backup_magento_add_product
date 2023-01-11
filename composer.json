@@ -16,6 +16,7 @@
     ],
     "require": {
         "league/csv": "^9.8",
-        "phpoffice/phpspreadsheet": "^1.26"
+        "phpoffice/phpspreadsheet": "^1.26",
+        "php-school/cli-menu": "^4.3"
     }
 }

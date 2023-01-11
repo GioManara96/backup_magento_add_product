@@ -52,12 +52,14 @@ function add_related_products($main_skus, $related_skus) {
         if ($response === "true") {
             activate_auto_related($main_skus[$i]);
         } else {
-            echo "Errore. Controllare i prodotti relativi al principale con SKU: " . $main_skus[$i] . "\n";
+            echo "\n\tErrore sul main " . $main_skus[$i] . ". Controllare il file error.json\n";
+            file_put_contents("error.json", $response);
         }
         curl_close($curl);
 
         $postfields = array("items" => array());
     }
+    echo "\n\tOperazione conclusa\n";
 }
 
 /**
