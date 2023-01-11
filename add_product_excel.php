@@ -5,7 +5,7 @@ require "functions.php";
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 $reader = new Xlsx;
-$spreadsheet = $reader->load("./test.xlsx");  // leggiamo lo spreadsheet
+$spreadsheet = $reader->load("./excel_files/file.xlsx");  // leggiamo lo spreadsheet
 
 $data = $spreadsheet->getSheet(0)->toArray();  // lo trasformiamo in array
 

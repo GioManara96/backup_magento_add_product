@@ -5,7 +5,7 @@ require "functions.php";
 use League\Csv\Reader;
 
 //load the CSV document from a file path
-$csv = Reader::createFromPath('./csv_files/forpen.csv', 'r');
+$csv = Reader::createFromPath('./csv_files/file.csv', 'r');
 $csv->setHeaderOffset(0);
 $csv->setDelimiter(";");
 $header = $csv->getHeader(); //returns the CSV header record
