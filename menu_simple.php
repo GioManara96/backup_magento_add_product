@@ -10,7 +10,8 @@ $scelta = "";  // variabile di controllo per il menu
 // loop che permette di non chiudere il menu dopo un'operazione a meno che non lo si desideri
 while ($scelta != 0) {
     echo "\n\t\t\t\t\t\tMENU CARICAMENTO PRODOTTI\n";
-    echo "\n\n\tINFO: Per utilizzare il menu assicurasi di avere le cartelle 'csv_files' e 'excel_files'\n";
+    echo "\n\n\tINFO:\n";
+    echo"\tPer utilizzare il programma efficacemente assicurasi di avere le cartelle 'csv_files' e 'excel_files'\n";
     echo "\tallo stesso livello di questo script. I file da leggere al loro interno dovranno chiamarsi\n";
     echo "\trispettivamente'file.csv' o 'file.xlsx'. Nel caso dei .csv assicurarsi di chiamare gli headers\n";
     echo "\tdegli SKU del main e del related rispettivamente 'MAIN' e 'RELATED'\n";
