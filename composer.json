@@ -1,0 +1,21 @@
+{
+    "name": "giovanni/magento_add_related_products",
+    "description": "progetto per l'aggiunta di prodotti relativi ad un altro tramite Magento2 API",
+    "type": "project",
+    "license": "CC",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Giovanni",
+            "email": "giomanara1996@gmail.com"
+        }
+    ],
+    "require": {
+        "league/csv": "^9.8",
+        "phpoffice/phpspreadsheet": "^1.26"
+    }
+}
