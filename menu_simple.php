@@ -19,7 +19,7 @@ while ($scelta != 0) {
     echo "\t2. Prendi i dati da 'excel_files/'\n";
     echo "\n\t0. ESCI\n\n\t";
 
-    $scelta = readline("Inserire scelta: ");
+    $scelta = readline("Inserire numero corrispondente alla scelta: ");
 
     switch ($scelta) {
         // si prendono i dati da un .csv
