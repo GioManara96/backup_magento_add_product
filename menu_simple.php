@@ -5,8 +5,9 @@ require "functions.php";
 use League\Csv\Reader;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-$scelta = "";
+$scelta = "";  // variabile di controllo per il menu
 
+// loop che permette di non chiudere il menu dopo un'operazione a meno che non lo si desideri
 while ($scelta != 0) {
     echo "\n\t\t\t\t\t\tMENU CARICAMENTO PRODOTTI\n";
     echo "\n\n\tINFO: Per utilizzare il menu assicurasi di avere le cartelle 'csv_files' e 'excel_files'\n";
@@ -20,6 +21,7 @@ while ($scelta != 0) {
     $scelta = readline("Inserire scelta: ");
 
     switch ($scelta) {
+        // si prendono i dati da un .csv
         case 1:
             //load the CSV document from a file path
             $csv = Reader::createFromPath('./csv_files/file.csv', 'r');
@@ -39,6 +41,7 @@ while ($scelta != 0) {
 
             add_related_products($main_skus, $related_skus);
             break;
+        // si prendono i dati da un excel
         case 2:
             $reader = new Xlsx;
             $spreadsheet = $reader->load("./excel_files/file.xlsx");  // leggiamo lo spreadsheet
